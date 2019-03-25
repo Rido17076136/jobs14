@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Get demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<form id="userForm">
+  <input type="text" name="username" placeholder="Masukan username yang dicari">
+  <input type="submit" value="Search">
+</form>
+<!-- the result of the search will be rendered inside thid div -->
+<div id="result"></div>
+
+<script>
+// Attach a submit handler to the form
+$( "#userForm").submit(function( event )  {
+
+  // stop form from submitting normally
+  event.preventDefault();
+
+  // Get some values from elements on the page:
+  var $form = $( this ),
+    username = $form.find( "input[name='username']" ).val(),
+    url = "https://api.github.com/users/"+username+"/repos";
+
+  // Send the data using post
+  var posting = $.post( url, { s: term } );
+
+  //Ajax function to send a get request
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType:"jsinp"
+    success: function(response){
+        //if request if mode successfully then the response represent the data
+
+        $( "#result" ).empty().append( resonse );
+      }
+  });
+
+});
+</script>
+
+</body>
+</html>      
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+    $("#button").click(function(){
+        $.get("demp_file.txt", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<button>Send an HTTP GET request to a page and get result back</button>
+
+</body>
+</html>  
+            
